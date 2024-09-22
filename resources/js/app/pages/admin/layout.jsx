@@ -27,7 +27,7 @@ const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
   { name: 'Orders', href: '#', icon: UsersIcon, current: false },
   { name: 'Products', href: '/products', icon: FolderIcon, current: false },
-  { name: 'Accounts', href: '#', icon: CalendarIcon, current: false },
+  { name: 'Accounts', href: '/accounts', icon: CalendarIcon, current: false },
   { name: 'Purchase Order', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ]

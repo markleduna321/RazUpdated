@@ -32,6 +32,10 @@ Route::get('/products/show', function() {
     return Inertia::render('admin/products/show/page');
 });
 
+Route::get('/accounts', function() {
+    return Inertia::render('admin/accounts/page');
+});
+
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
 //         'canLogin' => Route::has('login'),

@@ -1,31 +1,21 @@
-import React, { useState } from 'react'
-import Modal from '@/app/components/modal'
-import InputTextComponent from '@/app/components/input-text-component';
-import InputLabelComponent from '@/app/components/input-label-component';
-
+import React from 'react'
 
 const people = [
-  { name: 'ProductNam01', title: '02/24/2026', email: '1500', role: '01/02/2023' },
-  // More people...
-]
+    { name: 'James Pharmacy', title: 'San Carlos City', email: 'Pharmacy', role: '01/02/2023' },
+    { name: 'SanDoc', title: 'San Carlos City', email: 'Hospital', role: '01/02/2023' },
+    // More people...
+  ]
 
-export default function ProductTableSection() {
-  
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
-
+export default function AccountsTableSection() {
   return (
-    
     <div className="px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-md pt-3">
 
       <div className="sm:flex sm:items-center">
 
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">Products</h1>
+          <h1 className="text-base font-semibold leading-6 text-gray-900">Accounts</h1>
           <p className="mt-2 text-sm text-gray-700">
-            A list of all the products in your account including their name, title, email and role.
+            A list of all the accounts in your.
           </p>
         </div>
 
@@ -34,60 +24,9 @@ export default function ProductTableSection() {
           <button
           type="button"
           className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          onClick={openModal} >
-          Add product
+            >
+          Add account
           </button>
-
-          <Modal isOpen={isModalOpen} onClose={closeModal}>
-
-            <h2 className="text-xl font-semibold mb-4">Add Product</h2>
-              <div className="mt-4">
-                <InputLabelComponent htmlFor="email" labelText="Product Name" />
-                <InputTextComponent
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    autoComplete="name"
-                    />
-              </div>
-
-              <div>
-                <InputLabelComponent htmlFor="email" labelText="Expiry Date" />
-                <InputTextComponent
-                    id="epirydate"
-                    name="epirydate"
-                    type="date"
-                    required
-                    autoComplete="epirydate"
-                    />
-              </div>
-
-              <div>
-                <InputLabelComponent htmlFor="email" labelText="Amount" />
-                <InputTextComponent
-                    id="amount"
-                    name="amount"
-                    type="text"
-                    required
-                    autoComplete="amount"
-                    />
-              </div>
-
-            <button
-              className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 mr-10"
-              onClick={closeModal}
-            >
-              Close Modal
-            </button>
-
-            <button
-              className="mt-4 px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-400"
-            >
-              Add Product
-            </button>
-
-          </Modal>
           
         </div>
       </div>
@@ -100,16 +39,16 @@ export default function ProductTableSection() {
               <thead>
                 <tr>
                   <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
-                    Product Name
+                    Account Name
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Expiry Date
+                    Address
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    Stock
+                    Type
                   </th>
                   <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                    DR Date
+                    Date added
                   </th>
                   <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
                     <span className="sr-only">View</span>

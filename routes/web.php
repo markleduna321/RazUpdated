@@ -16,25 +16,30 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function() {
+Route::get('/', function () {
     return Inertia::render('login/page');
 });
+Route::prefix('admin')->group(function () {
+    Route::get('dashboard', function () {
+        return Inertia::render('admin/dashboard/page');
+    });
 
-Route::get('/dashboard', function() {
-    return Inertia::render('admin/dashboard/page');
+    Route::prefix('products')->group(function () {
+        Route::get('/', function () {
+            return Inertia::render('admin/products/page');
+        });
+        Route::get('/{id}', function () {
+            return Inertia::render('admin/products/id/page');
+        });
+    });
+
+    Route::get('/accounts', function () {
+        return Inertia::render('admin/accounts/page');
+    });
 });
 
-Route::get('/products', function() {
-    return Inertia::render('admin/products/page');
-});
 
-Route::get('/products/show', function() {
-    return Inertia::render('admin/products/show/page');
-});
 
-Route::get('/accounts', function() {
-    return Inertia::render('admin/accounts/page');
-});
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -55,4 +60,4 @@ Route::get('/accounts', function() {
 //     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 // });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

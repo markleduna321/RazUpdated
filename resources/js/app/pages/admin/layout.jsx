@@ -22,12 +22,13 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { Link } from '@inertiajs/react'
 
 const navigation = [
-  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
+  { name: 'Dashboard', href: '/admin/dashboard', icon: HomeIcon, current: true },
   { name: 'Orders', href: '#', icon: UsersIcon, current: false },
-  { name: 'Products', href: '/products', icon: FolderIcon, current: false },
-  { name: 'Accounts', href: '/accounts', icon: CalendarIcon, current: false },
+  { name: 'Products', href: '/admin/products', icon: FolderIcon, current: false },
+  { name: 'Accounts', href: '/admin/accounts', icon: CalendarIcon, current: false },
   { name: 'Purchase Order', href: '#', icon: DocumentDuplicateIcon, current: false },
   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ]
@@ -165,7 +166,7 @@ export default function AdminLayout({ children }) {
                   <ul role="list" className="-mx-2 space-y-1">
                     {navigation.map((item) => (
                       <li key={item.name}>
-                        <a
+                        <Link
                           href={item.href}
                           className={classNames(
                             item.current
@@ -176,7 +177,7 @@ export default function AdminLayout({ children }) {
                         >
                           <item.icon aria-hidden="true" className="h-6 w-6 shrink-0" />
                           {item.name}
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

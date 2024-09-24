@@ -1,4 +1,8 @@
-import React from 'react'
+import Button from '@/app/components/button';
+import InputLabelComponent from '@/app/components/input-label-component';
+import InputTextComponent from '@/app/components/input-text-component';
+import Modal from '@/app/components/modal';
+import React, {useState} from 'react'
 
 const people = [
     { name: 'James Pharmacy', title: 'San Carlos City', email: 'Pharmacy', role: '01/02/2023' },
@@ -7,6 +11,12 @@ const people = [
   ]
 
 export default function AccountsTableSection() {
+
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
+
   return (
     <div className="px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-md pt-3">
 
@@ -21,12 +31,56 @@ export default function AccountsTableSection() {
 
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           
-          <button
-          type="button"
-          className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          <Button type="primary" onClick={openModal}>Add Account</Button>
+
+          <Modal isOpen={isModalOpen} onClose={closeModal}>
+          <h2 className="text-xl font-semibold mb-4">Add Product</h2>
+              <div className="mt-4">
+                <InputLabelComponent htmlFor="email" labelText="Account Name" />
+                <InputTextComponent
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    autoComplete="name"
+                    />
+              </div>
+
+              <div className="mt-4">
+                <InputLabelComponent htmlFor="email" labelText="Type" />
+                <InputTextComponent
+                    id="epirydate"
+                    name="epirydate"
+                    type="select"
+                    required
+                    autoComplete="epirydate"
+                    />
+              </div>
+
+              <div className="mt-4">
+                <InputLabelComponent htmlFor="email" labelText="Address" />
+                <InputTextComponent
+                    id="amount"
+                    name="amount"
+                    type="text"
+                    required
+                    autoComplete="amount"
+                    />
+              </div>
+
+            <button
+              className="mt-4 px-3  4 py-2 bg-red-500 text-white rounded hover:bg-red-700 mr-10"
+              onClick={closeModal}
             >
-          Add account
-          </button>
+              Close Modal
+            </button>
+
+            <button
+              className="mt-4 px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-400"
+            >
+              Add Product
+            </button>
+          </Modal>
           
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Modal from '@/app/components/modal'
 import InputTextComponent from '@/app/components/input-text-component';
 import InputLabelComponent from '@/app/components/input-label-component';
+import Button from '@/app/components/button';
 
 
 const people = [
@@ -31,12 +32,7 @@ export default function ProductTableSection() {
 
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           
-          <button
-          type="button"
-          className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          onClick={openModal} >
-          Add product
-          </button>
+          <Button type="primary" onClick={openModal}>Add Product</Button>
 
           <Modal isOpen={isModalOpen} onClose={closeModal}>
 
@@ -52,7 +48,7 @@ export default function ProductTableSection() {
                     />
               </div>
 
-              <div>
+              <div className="mt-4">
                 <InputLabelComponent htmlFor="email" labelText="Expiry Date" />
                 <InputTextComponent
                     id="epirydate"
@@ -63,7 +59,7 @@ export default function ProductTableSection() {
                     />
               </div>
 
-              <div>
+              <div className="mt-4">
                 <InputLabelComponent htmlFor="email" labelText="Amount" />
                 <InputTextComponent
                     id="amount"
@@ -74,18 +70,9 @@ export default function ProductTableSection() {
                     />
               </div>
 
-            <button
-              className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 mr-10"
-              onClick={closeModal}
-            >
-              Close Modal
-            </button>
+            <Button type="danger" onClick={closeModal}>Close</Button>
 
-            <button
-              className="mt-4 px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-400"
-            >
-              Add Product
-            </button>
+            <Button type="primary">Add product</Button>
 
           </Modal>
           

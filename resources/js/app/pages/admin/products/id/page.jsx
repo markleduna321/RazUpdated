@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import AdminLayout from '../../layout'
-import { PaperClipIcon } from '@heroicons/react/20/solid'
+import { PaperClipIcon, PencilSquareIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import Modal from '@/app/components/modal';
 import InputTextComponent from '@/app/components/input-text-component';
 import InputLabelComponent from '@/app/components/input-label-component';
@@ -29,9 +29,28 @@ export default function ProductsShowPage() {
                     <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Product description and files</p>
                 </div>
 
-                <div className="flex  gap-4">
-                    <Button type="info" onClick={openModalAttachment}>Add Attachments</Button>
-                    <Button type="primary" onClick={openModalEdit}>Edit</Button>
+                <div className="flex flex-none gap-4">
+                <Button 
+                    type="info" 
+                    size="sm"
+                    isLoading={false}
+                    disabled={false}
+                    icon={<PaperClipIcon className="h-5 w-5" />}
+                    onClick={openModalAttachment}
+                    >
+                    Attachements
+                    </Button>
+
+                    <Button 
+                    type="primary"
+                    size="sm" 
+                    isLoading={false}
+                    disabled={false}
+                    icon={<PencilSquareIcon className="h-5 w-5" />}
+                    onClick={openModalEdit}
+                    >
+                    Edit
+                    </Button>
                 </div>
 
                 <Modal isOpen={isModalAttachmentOpen} onClose={closeModalAttachment}>
@@ -71,8 +90,19 @@ export default function ProductsShowPage() {
                 </div>
 
                 <div className='flex gap-4 justify-end'>
-                    <Button type="primary">Add Attachments</Button>
-                    <Button type="danger" onClick={closeModalAttachment}>Close</Button>
+                    <Button 
+                    type="primary"
+                    >
+                    Save
+                    </Button>
+
+                    <Button 
+                    type="danger" 
+                    onClick={closeModalAttachment}
+                    >
+                        {<XMarkIcon className="h-5 w-5" />}
+                        </Button>
+                    
                 </div>
 
                 </Modal>
@@ -115,7 +145,7 @@ export default function ProductsShowPage() {
                 
                 <div className="flex justify-end gap-4">
                     <Button type="primary">Save</Button>
-                    <Button type="danger" onClick={closeModalEdit}>Close</Button>
+                    <Button type="danger" onClick={closeModalEdit}>{<XMarkIcon className="h-5 w-5" />}</Button>
                 </div>
                 
                 

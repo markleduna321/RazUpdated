@@ -41,6 +41,13 @@ Route::prefix('admin')->group(function () {
             return Inertia::render('admin/accounts/id/page');
         });
     });
+
+    Route::prefix('purchase')->group(function () {
+        Route::get('/', function () {
+            return Inertia::render('admin/purchase-order/page');
+        });
+        
+    });
 });
 
 

@@ -2,6 +2,7 @@ import Button from '@/app/components/button';
 import InputLabelComponent from '@/app/components/input-label-component';
 import InputTextComponent from '@/app/components/input-text-component';
 import Modal from '@/app/components/modal';
+import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React, {useState} from 'react'
 
 const people = [
@@ -31,10 +32,10 @@ export default function AccountsTableSection() {
 
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           
-          <Button type="primary" onClick={openModal}>Add Account</Button>
+          <Button type="primary" onClick={openModal} icon={<PlusIcon className="h-5 w-5" />}>New Account</Button>
 
           <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <h2 className="text-xl font-semibold mb-4">Add Product</h2>
+          <h2 className="text-xl font-semibold mb-4">Add Account</h2>
               <div>
                 <InputLabelComponent htmlFor="email" labelText="Account Name" />
                 <InputTextComponent
@@ -69,9 +70,11 @@ export default function AccountsTableSection() {
               </div>
 
               <div className='flex justify-end gap-4'>
-                <Button type="primary">Add account</Button>
+                <Button type="primary">Save</Button>
 
-                <Button type="danger" onClick={closeModal}>Close</Button>
+                <Button type="danger" onClick={closeModal}>
+                  <XMarkIcon className="h-5 w-5" />
+                  </Button>
               </div>
           </Modal>
           

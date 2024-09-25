@@ -3,6 +3,7 @@ import Modal from '@/app/components/modal'
 import InputTextComponent from '@/app/components/input-text-component';
 import InputLabelComponent from '@/app/components/input-label-component';
 import Button from '@/app/components/button';
+import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
 
 
 const people = [
@@ -32,7 +33,16 @@ export default function ProductTableSection() {
 
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           
-          <Button type="primary" onClick={openModal}>Add Product</Button>
+        <Button 
+        type="primary"
+        size="md"  
+        isLoading={false} 
+        disabled={false} 
+        icon={<PlusIcon className="h-5 w-5" />}  // Add the PlusIcon here
+        onClick={openModal}
+        >
+          New Product
+        </Button>
 
           <Modal isOpen={isModalOpen} onClose={closeModal}>
 
@@ -71,12 +81,24 @@ export default function ProductTableSection() {
               </div>
 
               <div className='flex justify-end gap-4'>
-                <div>
-                  <Button type="primary">Add product</Button>
-                </div>
-                <div>
-                  <Button type="danger" onClick={closeModal}>Close</Button>
-                </div> 
+                
+                  <Button 
+                      type="primary" 
+                      size="md"
+                      isLoading={false}
+                      disabled={false}
+                      >
+                      Save
+                  </Button>
+                
+                  <Button 
+                      type="danger"
+                      size='md'
+                      isLoading={false}
+                      disabled={false}
+                      onClick={closeModal}
+                      >{<XMarkIcon className="h-5 w-5" />}</Button>
+                
               </div>
             
 

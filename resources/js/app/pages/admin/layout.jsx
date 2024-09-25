@@ -26,10 +26,10 @@ import { Link } from '@inertiajs/react'
 
 const navigation = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: HomeIcon, current: true },
-  { name: 'Orders', href: '#', icon: UsersIcon, current: false },
+  { name: 'Order Inventory', href: '#', icon: UsersIcon, current: false },
   { name: 'Products', href: '/admin/products', icon: FolderIcon, current: false },
   { name: 'Accounts', href: '/admin/accounts', icon: CalendarIcon, current: false },
-  { name: 'Purchase Order', href: '#', icon: DocumentDuplicateIcon, current: false },
+  { name: 'Purchase Order', href: '/admin/purchase', icon: DocumentDuplicateIcon, current: false },
   { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
 ]
 const teams = [

@@ -37,7 +37,7 @@ export default function ProductTableSection() {
           <Modal isOpen={isModalOpen} onClose={closeModal}>
 
             <h2 className="text-xl font-semibold mb-4">Add Product</h2>
-              <div className="mt-4">
+              <div>
                 <InputLabelComponent htmlFor="email" labelText="Product Name" />
                 <InputTextComponent
                     id="name"
@@ -48,7 +48,7 @@ export default function ProductTableSection() {
                     />
               </div>
 
-              <div className="mt-4">
+              <div>
                 <InputLabelComponent htmlFor="email" labelText="Expiry Date" />
                 <InputTextComponent
                     id="epirydate"
@@ -59,7 +59,7 @@ export default function ProductTableSection() {
                     />
               </div>
 
-              <div className="mt-4">
+              <div>
                 <InputLabelComponent htmlFor="email" labelText="Amount" />
                 <InputTextComponent
                     id="amount"
@@ -70,9 +70,15 @@ export default function ProductTableSection() {
                     />
               </div>
 
-            <Button type="danger" onClick={closeModal}>Close</Button>
-
-            <Button type="primary">Add product</Button>
+              <div className='flex justify-end gap-4'>
+                <div>
+                  <Button type="primary">Add product</Button>
+                </div>
+                <div>
+                  <Button type="danger" onClick={closeModal}>Close</Button>
+                </div> 
+              </div>
+            
 
           </Modal>
           
@@ -114,7 +120,7 @@ export default function ProductTableSection() {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                      <a href="/products/show" className="text-indigo-600 hover:text-indigo-900">
+                      <a href="/admin/products/id" className="text-indigo-600 hover:text-indigo-900">
                         View<span className="sr-only">, {person.name}</span>
                       </a>
                     </td>

@@ -4,6 +4,7 @@ import { PaperClipIcon } from '@heroicons/react/20/solid'
 import Modal from '@/app/components/modal';
 import InputTextComponent from '@/app/components/input-text-component';
 import InputLabelComponent from '@/app/components/input-label-component';
+import Button from '@/app/components/button';
 
 export default function ProductsShowPage() {
 
@@ -28,21 +29,15 @@ export default function ProductsShowPage() {
                     <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Product description and files</p>
                 </div>
 
-                <div className="flex space-x-4">
-                    <button className="block rounded-md bg-green-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    onClick={openModalAttachment}>
-                    Add Attachments
-                    </button>
-                    <button className="block rounded-md bg-violet-500 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    onClick={openModalEdit}>
-                    Edit
-                    </button>
+                <div className="flex  gap-4">
+                    <Button type="info" onClick={openModalAttachment}>Add Attachments</Button>
+                    <Button type="primary" onClick={openModalEdit}>Edit</Button>
                 </div>
 
                 <Modal isOpen={isModalAttachmentOpen} onClose={closeModalAttachment}>
 
                 <h2 className="text-xl font-semibold mb-4">Add Attachments</h2>
-                <div className="mt-4">
+                <div>
                     <InputLabelComponent htmlFor="email" labelText="Attachment #1" />
                     <InputTextComponent
                         id="name"
@@ -53,7 +48,7 @@ export default function ProductsShowPage() {
                         />
                 </div>
 
-                <div className="mt-4">
+                <div>
                     <InputLabelComponent htmlFor="email" labelText="Attachment #2" />
                     <InputTextComponent
                         id="epirydate"
@@ -64,7 +59,7 @@ export default function ProductsShowPage() {
                         />
                 </div>
 
-                <div className="mt-4">
+                <div>
                     <InputLabelComponent htmlFor="email" labelText="Attachment #3" />
                     <InputTextComponent
                         id="amount"
@@ -75,25 +70,17 @@ export default function ProductsShowPage() {
                         />
                 </div>
 
-                <button
-                className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 mr-10"
-                onClick={closeModalAttachment}
-                >
-                Close Modal
-                </button>
-
-                <button
-                className="mt-4 px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-400"
-                >
-                Save Attachments
-                </button>
+                <div className='flex gap-4 justify-end'>
+                    <Button type="primary">Add Attachments</Button>
+                    <Button type="danger" onClick={closeModalAttachment}>Close</Button>
+                </div>
 
                 </Modal>
 
                 <Modal isOpen={isModalEditOpen} onClose={closeModalEdit}>
 
                 <h2 className="text-xl font-semibold mb-4">Edit Product Info</h2>
-                <div className="mt-4">
+                <div>
                     <InputLabelComponent htmlFor="email" labelText="Product Name" />
                     <InputTextComponent
                         id="name"
@@ -104,7 +91,7 @@ export default function ProductsShowPage() {
                         />
                 </div>
 
-                <div className="mt-4">
+                <div>
                     <InputLabelComponent htmlFor="email" labelText="Expiry Date" />
                     <InputTextComponent
                         id="epirydate"
@@ -115,7 +102,7 @@ export default function ProductsShowPage() {
                         />
                 </div>
 
-                <div className="mt-4">
+                <div>
                     <InputLabelComponent htmlFor="email" labelText="Amount" />
                     <InputTextComponent
                         id="amount"
@@ -125,20 +112,13 @@ export default function ProductsShowPage() {
                         autoComplete="amount"
                         />
                 </div>
-
-                <button
-                className="mt-4 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 mr-10"
-                onClick={closeModalEdit}
-                >
-                Close Modal
-                </button>
-
-                <button
-                className="mt-4 px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-400"
-                >
-                Save Changes
-                </button>
-
+                
+                <div className="flex justify-end gap-4">
+                    <Button type="primary">Save</Button>
+                    <Button type="danger" onClick={closeModalEdit}>Close</Button>
+                </div>
+                
+                
                 </Modal>
 
             </div>

@@ -33,8 +33,13 @@ Route::prefix('admin')->group(function () {
         });
     });
 
-    Route::get('/accounts', function () {
-        return Inertia::render('admin/accounts/page');
+    Route::prefix('accounts')->group(function () {
+        Route::get('/', function () {
+            return Inertia::render('admin/accounts/page');
+        });
+        Route::get('/{id}', function () {
+            return Inertia::render('admin/accounts/id/page');
+        });
     });
 });
 

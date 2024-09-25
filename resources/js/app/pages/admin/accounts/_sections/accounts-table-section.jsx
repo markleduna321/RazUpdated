@@ -35,7 +35,7 @@ export default function AccountsTableSection() {
 
           <Modal isOpen={isModalOpen} onClose={closeModal}>
           <h2 className="text-xl font-semibold mb-4">Add Product</h2>
-              <div className="mt-4">
+              <div>
                 <InputLabelComponent htmlFor="email" labelText="Account Name" />
                 <InputTextComponent
                     id="name"
@@ -46,7 +46,7 @@ export default function AccountsTableSection() {
                     />
               </div>
 
-              <div className="mt-4">
+              <div>
                 <InputLabelComponent htmlFor="email" labelText="Type" />
                 <InputTextComponent
                     id="epirydate"
@@ -57,7 +57,7 @@ export default function AccountsTableSection() {
                     />
               </div>
 
-              <div className="mt-4">
+              <div>
                 <InputLabelComponent htmlFor="email" labelText="Address" />
                 <InputTextComponent
                     id="amount"
@@ -68,18 +68,11 @@ export default function AccountsTableSection() {
                     />
               </div>
 
-            <button
-              className="mt-4 px-3  4 py-2 bg-red-500 text-white rounded hover:bg-red-700 mr-10"
-              onClick={closeModal}
-            >
-              Close Modal
-            </button>
+              <div className='flex justify-end gap-4'>
+                <Button type="primary">Add account</Button>
 
-            <button
-              className="mt-4 px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-400"
-            >
-              Add Product
-            </button>
+                <Button type="danger" onClick={closeModal}>Close</Button>
+              </div>
           </Modal>
           
         </div>
@@ -120,7 +113,7 @@ export default function AccountsTableSection() {
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                      <a href="/products/show" className="text-indigo-600 hover:text-indigo-900">
+                      <a href="/admin/accounts/id" className="text-indigo-600 hover:text-indigo-900">
                         View<span className="sr-only">, {person.name}</span>
                       </a>
                     </td>

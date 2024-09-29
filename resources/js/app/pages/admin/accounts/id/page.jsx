@@ -17,7 +17,7 @@ export default function AccountsViewPage() {
                 </div>
 
                 <div className="flex  gap-4">
-                    <Button type="primary" 
+                    <Button variant="primary" 
                     icon={<PencilSquareIcon className="h-5 w-5" />}>Edit</Button>
                 </div>
             </div>

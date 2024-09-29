@@ -31,7 +31,8 @@ export default function ProductsShowPage() {
 
                 <div className="flex flex-none gap-4">
                 <Button 
-                    type="info" 
+                    type="button"
+                    variant="info" 
                     size="sm"
                     isLoading={false}
                     disabled={false}
@@ -42,7 +43,8 @@ export default function ProductsShowPage() {
                     </Button>
 
                     <Button 
-                    type="primary"
+                    type="button"
+                    variant="primary"
                     size="sm" 
                     isLoading={false}
                     disabled={false}
@@ -91,13 +93,13 @@ export default function ProductsShowPage() {
 
                 <div className='flex gap-4 justify-end'>
                     <Button 
-                    type="primary"
+                    variant="primary"
                     >
                     Save
                     </Button>
 
                     <Button 
-                    type="danger" 
+                    variant="danger" 
                     onClick={closeModalAttachment}
                     >
                         {<XMarkIcon className="h-5 w-5" />}
@@ -144,8 +146,8 @@ export default function ProductsShowPage() {
                 </div>
                 
                 <div className="flex justify-end gap-4">
-                    <Button type="primary">Save</Button>
-                    <Button type="danger" onClick={closeModalEdit}>{<XMarkIcon className="h-5 w-5" />}</Button>
+                    <Button variant="primary">Save</Button>
+                    <Button variant="danger" onClick={closeModalEdit}>{<XMarkIcon className="h-5 w-5" />}</Button>
                 </div>
                 
                 

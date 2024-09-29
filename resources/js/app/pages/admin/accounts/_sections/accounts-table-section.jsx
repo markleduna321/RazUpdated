@@ -32,7 +32,7 @@ export default function AccountsTableSection() {
 
         <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           
-          <Button type="primary" onClick={openModal} icon={<PlusIcon className="h-5 w-5" />}>New Account</Button>
+          <Button variant="primary" onClick={openModal} icon={<PlusIcon className="h-5 w-5" />}>New Account</Button>
 
           <Modal isOpen={isModalOpen} onClose={closeModal}>
           <h2 className="text-xl font-semibold mb-4">Add Account</h2>
@@ -70,9 +70,9 @@ export default function AccountsTableSection() {
               </div>
 
               <div className='flex justify-end gap-4'>
-                <Button type="primary">Save</Button>
+                <Button variant="primary">Save</Button>
 
-                <Button type="danger" onClick={closeModal}>
+                <Button variant="danger" onClick={closeModal}>
                   <XMarkIcon className="h-5 w-5" />
                   </Button>
               </div>

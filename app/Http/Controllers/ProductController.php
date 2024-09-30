@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -28,22 +29,20 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-        $request->validate([
+    
+
+        // Create a new product
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'expiry_date' => 'required|date',
             'amount' => 'required|numeric',
         ]);
 
-        // Create a new product
-        $product = Product::create([
-            'name' => $request->name,
-            'expiry_date' => $request->expiry_date,
-            'amount' => $request->amount,
-        ]);
-
-        return response()->json(['message' => 'Product created successfully', 'product' => $product], 201);
+        // Create a new product with the validated data
+        $product = Product::create($validatedData);
+        return response()->json(['message' => 'Product created successfully', 'product' => $product], 200);
     }
 
     /**

@@ -15,7 +15,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return response()->json($products);
+        return response()->json([
+            'response' => $products
+        ], 200);
     }
 
     /**
@@ -31,7 +33,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-    
+
 
         // Create a new product
         $validatedData = $request->validate([
@@ -48,9 +50,12 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $product =  Product::where('id', $id)->first();
+        return response()->json([
+            'response' => $product
+        ], 200);
     }
 
     /**

@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\Product;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +29,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/', function () {
             return Inertia::render('admin/products/page');
         });
-        Route::get('/{id}', function () {
-            return Inertia::render('admin/products/id/page');
+    
+        Route::get('/{id}', function ($id) {
+            $product = Product::find($id);
+    
+            if (!$product) {
+                return redirect()->route('products.index')->withErrors('Product not found');
+            }
+    
+            return Inertia::render('admin/products/id/page', [
+                'product' => $product
+            ]);
         });
     });
 

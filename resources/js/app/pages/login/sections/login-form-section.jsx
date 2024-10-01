@@ -1,6 +1,6 @@
 import React from 'react'
-import InputLabelComponent from "@/app/components/input-label-component";
-import InputTextComponent from "@/app/components/input-text-component";
+import InputLabelComponent from "@/app/pages/components/input-label-component";
+import InputTextComponent from "@/app/pages/components/input-text-component";
 
 export default function LoginFormSection() {
   return (

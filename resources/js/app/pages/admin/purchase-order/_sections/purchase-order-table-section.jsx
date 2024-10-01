@@ -1,7 +1,7 @@
-import Button from '@/app/components/button';
-import InputLabelComponent from '@/app/components/input-label-component';
-import InputTextComponent from '@/app/components/input-text-component';
-import Modal from '@/app/components/modal';
+import Button from '@/app/pages/components/button';
+import InputLabelComponent from '@/app/pages/components/input-label-component';
+import InputTextComponent from '@/app/pages/components/input-text-component';
+import Modal from '@/app/pages/components/modal';
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import React, {useState} from 'react'
 

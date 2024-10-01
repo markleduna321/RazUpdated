@@ -1,30 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import ProductCreateSection from './product-create-section';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 export default function ProductTableSection() {
-  const [products, setProducts] = useState([]); // State to store products
-
-  // Fetch the products from the backend API
-  const fetchProducts = async () => {
-    try {
-      const response = await axios.get('/api/products'); // Replace with your API route
-      setProducts(response.data); // Update state with fetched data
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    }
-  };
-
-  // Fetch products when component mounts
-  useEffect(() => {
-    fetchProducts();
-  }, []);
-
-  // Callback to refresh products after a new product is added
-  const handleProductAdded = () => {
-    fetchProducts();
-  };
-
+const {products}=useSelector((store)=>store.products)
+  
+function handleProductAdded(params) {
+  
+}
   return (
     <div className="px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-md pt-3">
       <div className="sm:flex sm:items-center">
@@ -70,8 +55,8 @@ export default function ProductTableSection() {
                       {product.name}
                     </td>
                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.expiry_date}</td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.stock}</td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.dr_date}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{product.amount}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{moment(product.created_at).format('LLL')}</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                       <a href={`/admin/products/${product.id}`} className="text-indigo-600 hover:text-indigo-900">
                         View<span className="sr-only">, {product.name}</span>

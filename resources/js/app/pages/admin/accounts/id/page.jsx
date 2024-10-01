@@ -1,7 +1,7 @@
 import React from 'react'
 import AdminLayout from '../../layout'
 import { PaperClipIcon } from '@heroicons/react/20/solid'
-import Button from '@/app/components/button'
+import Button from '@/app/pages/components/button'
 import { PencilSquareIcon } from '@heroicons/react/24/solid'
 
 export default function AccountsViewPage() {

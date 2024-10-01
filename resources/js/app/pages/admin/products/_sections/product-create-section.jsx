@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import Modal from '@/app/components/modal';
-import InputTextComponent from '@/app/components/input-text-component';
-import InputLabelComponent from '@/app/components/input-label-component';
-import Button from '@/app/components/button';
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import axios from 'axios';
+import store from '@/app/store/store';
+import { create_products_thunk, get_products_thunk } from '../_redux/products-thunk';
+import Button from '@/app/pages/components/button';
+import InputLabelComponent from '@/app/pages/components/input-label-component';
+import InputTextComponent from '@/app/pages/components/input-text-component';
+import Modal from '@/app/pages/components/modal';
 
 export default function ProductCreateSection() {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -36,28 +38,9 @@ export default function ProductCreateSection() {
                 expiry_date: newAgent.expirydate,  // Match API naming
                 amount: newAgent.amount,
             };
-
-            console.log("Submitting data:", newAgentData); // Add this line for debugging
-
-            // Send POST request to the backend API
-            const response = await axios.post('/api/products', newAgentData);
-
-            console.log('Response:', response); // Debug the response
-
-            if (response.status >= 200 && response.status < 300) {
-                // Successfully created product
-                console.log('Product created successfully:', response.data);
-                
-                // Reset form and close modal
-                setNewAgent({
-                    name: '',
-                    expirydate: '',
-                    amount: '',
-                });
-                closeModal();
-            } else {
-                console.error('Failed to create product. Status:', response.status);
-            }
+           await store.dispatch(create_products_thunk(newAgentData))
+           await store.dispatch(get_products_thunk())
+           closeModal();
         } catch (error) {
             console.error('Error saving product:', error);
         }

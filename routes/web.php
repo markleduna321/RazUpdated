@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Product;
+use App\Models\Account;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +48,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/', function () {
             return Inertia::render('admin/accounts/page');
         });
-        Route::get('/{id}', function () {
-            return Inertia::render('admin/accounts/id/page');
+
+        Route::get('/{id}', function ($id) {
+            $account = Account::find($id);
+    
+            if (!$account) {
+                return redirect()->route('account.index')->withErrors('Account not found');
+            }
+    
+            return Inertia::render('admin/accounts/id/page', [
+                'account' => $account
+            ]);
         });
     });
 

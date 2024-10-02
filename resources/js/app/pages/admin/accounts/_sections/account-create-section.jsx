@@ -7,6 +7,7 @@ import axios from 'axios';
 import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { create_accounts_thunk, get_accounts_thunk } from '../_redux/accounts-thunk';
 import store from '@/app/store/store';
+import SelectComponent from '@/app/pages/components/input-select';
 
 export default function AccountCreateSection() {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -46,6 +47,11 @@ export default function AccountCreateSection() {
         }
     };
 
+    const typeOptions = [
+        { value: 'hospital', label: 'Hospital' },
+        { value: 'pharmacy', label: 'Pharmacy' },
+      ];
+
   return (
     <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           
@@ -67,7 +73,7 @@ export default function AccountCreateSection() {
               </div>
 
               <div className="mb-4">
-                <InputLabelComponent htmlFor="email" labelText="Type" />
+                <InputLabelComponent htmlFor="address" labelText="Address" />
                 <InputTextComponent
                     id="address"
                     name="address"
@@ -79,14 +85,14 @@ export default function AccountCreateSection() {
               </div>
 
               <div className="mb-4">
-                <InputLabelComponent htmlFor="email" labelText="Address" />
-                <InputTextComponent
+                <InputLabelComponent htmlFor="type" labelText="Type" />
+                <SelectComponent
                     id="type"
                     name="type"
-                    type="text"
-                    required
                     value={newAgent.type}
                     onChange={handleChange}
+                    options={typeOptions}
+                    required
                     />
               </div>
 

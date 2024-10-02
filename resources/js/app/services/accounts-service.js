@@ -7,3 +7,8 @@ export async function get_accounts_service() {
     const res = await axios.get('/api/accounts')
     return res.data.response
 }
+
+export async function get_accounts_by_id_service(id) {
+    const res = await axios.get('/api/accounts/' +id )
+    return res.data.response
+}

@@ -13,7 +13,7 @@ export default function ProductCreateSection() {
     const [newAgent, setNewAgent] = useState({
         name: '',
         expirydate: '',
-        amount: '',
+        stock: '',
     });
 
     // Open and close modal functions
@@ -36,7 +36,7 @@ export default function ProductCreateSection() {
             const newAgentData = {
                 name: newAgent.name,
                 expiry_date: newAgent.expirydate,  // Match API naming
-                amount: newAgent.amount,
+                stock: newAgent.amount,
             };
            await store.dispatch(create_products_thunk(newAgentData))
            await store.dispatch(get_products_thunk())
@@ -92,9 +92,9 @@ export default function ProductCreateSection() {
                         <InputTextComponent
                             id="amount"
                             name="amount"
-                            type="text"
+                            type="number"
                             required
-                            value={newAgent.amount}
+                            value={newAgent.stock}
                             onChange={handleChange}
                         />
                     </div>

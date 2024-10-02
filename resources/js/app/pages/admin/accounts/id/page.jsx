@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useEffect , useState } from 'react'
 import AdminLayout from '../../layout'
 import { PaperClipIcon } from '@heroicons/react/20/solid'
 import Button from '@/app/pages/components/button'
 import { PencilSquareIcon } from '@heroicons/react/24/solid'
+import AccountIDDetailsSection from './_sections/account-id-details-section'
+import store from '@/app/store/store'
+import { get_accounts_by_id_thunk } from '../_redux/accounts-thunk'
+
 
 export default function AccountsViewPage() {
+    const account_id = window.location.pathname.split('/')[3]
+    
+
+    useEffect(() => {
+        store.dispatch(get_accounts_by_id_thunk(account_id))
+    }, []);
   return (
     <AdminLayout>
         <div className="relative bg-white p-5 rounded-lg shadow-md">
@@ -23,36 +33,7 @@ export default function AccountsViewPage() {
             </div>
             
 
-            <div className="mt-6 border-t border-gray-100">
-                <dl className="divide-y divide-gray-100"> 
-
-                    <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                        <dt className="text-sm font-medium leading-6 text-gray-900">Account name</dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Margot Foster</dd>
-                    </div>
-
-                    <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                        <dt className="text-sm font-medium leading-6 text-gray-900">Address</dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Backend Developer</dd>
-                    </div>
-
-                    <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                        <dt className="text-sm font-medium leading-6 text-gray-900">Type</dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">margotfoster@example.com</dd>
-                    </div>
-
-                    <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                        <dt className="text-sm font-medium leading-6 text-gray-900">Date</dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                        Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur
-                        qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud
-                        pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
-                        </dd>
-                    </div>
-
-                    
-                </dl>
-            </div>
+            <AccountIDDetailsSection />
         </div>
     </AdminLayout>
   )

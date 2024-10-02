@@ -46,9 +46,12 @@ class AccountController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Account $account)
+    public function show($id)
     {
-        //
+        $account =  Account::where('id', $id)->first();
+        return response()->json([
+            'response' => $account
+        ], 200);
     }
 
     /**

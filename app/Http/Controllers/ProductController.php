@@ -39,7 +39,7 @@ class ProductController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'expiry_date' => 'required|date',
-            'amount' => 'required|numeric',
+            'stock' => 'required|numeric',
         ]);
 
         // Create a new product with the validated data

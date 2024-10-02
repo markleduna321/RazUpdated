@@ -1,4 +1,4 @@
-import { create_accounts_service, get_accounts_service } from '@/app/services/accounts-service';
+import { create_accounts_service, get_accounts_by_id_service, get_accounts_service } from '@/app/services/accounts-service';
 import {accountsSlice} from './accounts-slice';
 
 
@@ -17,3 +17,9 @@ export function get_accounts_thunk() {
     };
 }
 
+export function get_accounts_by_id_thunk(account_id) {
+    return async function (dispatch, getState) {
+        const result = await get_accounts_by_id_service(account_id)
+        dispatch(accountsSlice.actions.setAccounts(result));
+    };
+}

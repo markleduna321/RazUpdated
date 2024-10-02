@@ -27,6 +27,7 @@ use App\Http\Controllers\ProductController;
 
     Route::get('/accounts', [AccountController::class, 'index']);
     Route::post('/accounts', [AccountController::class, 'store']);
+    Route::get('/accounts/{id}', [AccountController::class, 'show']);
  // Use {product} for route model binding
 
 // });

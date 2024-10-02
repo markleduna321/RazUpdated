@@ -1,23 +1,16 @@
-import Button from '@/app/pages/components/button';
-import InputLabelComponent from '@/app/pages/components/input-label-component';
-import InputTextComponent from '@/app/pages/components/input-text-component';
-import Modal from '@/app/pages/components/modal';
-import { PlusIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import React, {useState} from 'react'
 
-const people = [
-    { name: 'James Pharmacy', title: 'San Carlos City', email: 'Pharmacy', role: '01/02/2023' },
-    { name: 'SanDoc', title: 'San Carlos City', email: 'Hospital', role: '01/02/2023' },
-    // More people...
-  ]
+import React, {useState, useEffect} from 'react'
+import axios from 'axios';
+import AccountCreateSection from './account-create-section';
+import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 export default function AccountsTableSection() {
+  const {accounts}=useSelector((store)=>store.accounts)
 
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
-
+  function handleAccountAdded(params) {
+    
+  }
   return (
     <div className="px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-md pt-3">
 
@@ -30,55 +23,7 @@ export default function AccountsTableSection() {
           </p>
         </div>
 
-        <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-          
-          <Button variant="primary" onClick={openModal} icon={<PlusIcon className="h-5 w-5" />}>New Account</Button>
-
-          <Modal isOpen={isModalOpen} onClose={closeModal}>
-          <h2 className="text-xl font-semibold mb-4">Add Account</h2>
-              <div>
-                <InputLabelComponent htmlFor="email" labelText="Account Name" />
-                <InputTextComponent
-                    id="name"
-                    name="name"
-                    type="text"
-                    required
-                    autoComplete="name"
-                    />
-              </div>
-
-              <div>
-                <InputLabelComponent htmlFor="email" labelText="Type" />
-                <InputTextComponent
-                    id="epirydate"
-                    name="epirydate"
-                    type="select"
-                    required
-                    autoComplete="epirydate"
-                    />
-              </div>
-
-              <div>
-                <InputLabelComponent htmlFor="email" labelText="Address" />
-                <InputTextComponent
-                    id="amount"
-                    name="amount"
-                    type="text"
-                    required
-                    autoComplete="amount"
-                    />
-              </div>
-
-              <div className='flex justify-end gap-4'>
-                <Button variant="primary">Save</Button>
-
-                <Button variant="danger" onClick={closeModal}>
-                  <XMarkIcon className="h-5 w-5" />
-                  </Button>
-              </div>
-          </Modal>
-          
-        </div>
+        <AccountCreateSection onProductAdded={handleAccountAdded}/>
       </div>
 
       <div className="mt-8 flow-root">
@@ -107,17 +52,17 @@ export default function AccountsTableSection() {
               </thead>
 
               <tbody className="divide-y divide-gray-200">
-                {people.map((person) => (
-                  <tr key={person.email}>
+              {accounts.map((account) => (
+                  <tr key={account.id}>
                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                      {person.name}
+                      {account.name}
                     </td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.title}</td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
-                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{account.address}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{account.type}</td>
+                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{moment(account.created_at).format('LLL')}</td>
                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                      <a href="/admin/accounts/id" className="text-indigo-600 hover:text-indigo-900">
-                        View<span className="sr-only">, {person.name}</span>
+                      <a href={`/admin/products/${account.id}`} className="text-indigo-600 hover:text-indigo-900">
+                        View<span className="sr-only">, {account.name}</span>
                       </a>
                     </td>
                   </tr>

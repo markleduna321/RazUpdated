@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -23,6 +24,9 @@ use App\Http\Controllers\ProductController;
     Route::get('/products', [ProductController::class, 'index']);
     Route::post('/products', [ProductController::class, 'store']);
     Route::get('/products/{id}', [ProductController::class, 'show']);
+
+    Route::get('/accounts', [AccountController::class, 'index']);
+    Route::post('/accounts', [AccountController::class, 'store']);
  // Use {product} for route model binding
 
 // });

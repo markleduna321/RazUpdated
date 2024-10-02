@@ -13,3 +13,4 @@ export async function create_products_service(data) {
     const res = await axios.post('/api/products',data)
     return res.data.response
 }
+

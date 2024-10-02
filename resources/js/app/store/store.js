@@ -2,10 +2,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import appSlice from '../_redux/app-slice';
 import productsSlice from '../pages/admin/products/_redux/products-slice';
+import accountsSlice from '../pages/admin/accounts/_redux/accounts-slice';
 const store = configureStore({
     reducer: {
         app: appSlice,
-        products:productsSlice
+        products:productsSlice,
+        accounts: accountsSlice
     },
 });
 

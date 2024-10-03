@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 
 export default function AccountsTableSection() {
-  const {accounts}=useSelector((store)=>store.accounts)
+  const { accounts }=useSelector((store)=>store.accounts)
 
   function handleAccountAdded(params) {
     

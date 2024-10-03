@@ -53,7 +53,7 @@ Route::prefix('admin')->group(function () {
             $account = Account::find($id);
     
             if (!$account) {
-                return redirect()->route('account.index')->withErrors('Account not found');
+                return redirect()->route('accounts.index')->withErrors('Account not found');
             }
     
             return Inertia::render('admin/accounts/id/page', [

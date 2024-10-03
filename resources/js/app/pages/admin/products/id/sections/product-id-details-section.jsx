@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 
 export default function ProductIDDetailsSection() {
     const { product } = useSelector((store) => store.products) 
+    console.log('ewewew', product);
     return (
         <div className="mt-6 border-t border-gray-100">
             <dl className="divide-y divide-gray-100">

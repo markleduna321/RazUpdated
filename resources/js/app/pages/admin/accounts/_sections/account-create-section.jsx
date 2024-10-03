@@ -48,8 +48,8 @@ export default function AccountCreateSection() {
     };
 
     const typeOptions = [
-        { value: 'hospital', label: 'Hospital' },
-        { value: 'pharmacy', label: 'Pharmacy' },
+        { value: 'Hospital', label: 'Hospital' },
+        { value: 'Pharmacy', label: 'Pharmacy' },
       ];
 
   return (

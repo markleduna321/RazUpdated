@@ -7,7 +7,7 @@ const store = configureStore({
     reducer: {
         app: appSlice,
         products:productsSlice,
-        accounts: accountsSlice
+        accounts:accountsSlice,
     },
 });
 

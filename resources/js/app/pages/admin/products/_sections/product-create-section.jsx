@@ -88,7 +88,7 @@ export default function ProductCreateSection() {
                     </div>
 
                     <div className="mb-4">
-                        <InputLabelComponent htmlFor="amount" labelText="Amount" />
+                        <InputLabelComponent htmlFor="amount" labelText="Stock" />
                         <InputTextComponent
                             id="amount"
                             name="amount"

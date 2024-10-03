@@ -24,7 +24,9 @@ export default function PurchaseOrderTableSection() {
       <div className="sm:flex sm:items-center">
 
         <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">Purchase Orders</h1>
+          <h1 className="text-2xl font-semibold leading-6 text-gray-900 underline decoration-teal-400 w-44 shadow-md">
+            Purchase Order
+          </h1>
           <p className="mt-2 text-sm text-gray-700">
             A list of all the Purchase Orders.
           </p>

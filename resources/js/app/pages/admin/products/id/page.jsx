@@ -31,16 +31,17 @@ export default function ProductsShowPage() {
             <div className="relative bg-white p-5 rounded-lg shadow-md">
                 <div className="flex justify-between">
 
-                    <div>
+                    <div className="px-4 sm:px-0">
                         <h3 className="text-base font-semibold leading-7 text-gray-900">Product Information</h3>
                         <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Product description and files</p>
                     </div>
 
-                    <div className="flex flex-none gap-4">
+                    <div className="mt-4 sm:ml-16 sm:mt-0 flex gap-4">
+                        <div>
                         <Button
                             type="button"
                             variant="info"
-                            size="sm"
+                            size="md"
                             isLoading={false}
                             disabled={false}
                             icon={<PaperClipIcon className="h-5 w-5" />}
@@ -48,11 +49,13 @@ export default function ProductsShowPage() {
                         >
                             Attachements
                         </Button>
-
+                        </div>
+                        
+                        <div>
                         <Button
                             type="button"
                             variant="primary"
-                            size="sm"
+                            size="md"
                             isLoading={false}
                             disabled={false}
                             icon={<PencilSquareIcon className="h-5 w-5" />}
@@ -60,6 +63,8 @@ export default function ProductsShowPage() {
                         >
                             Edit
                         </Button>
+                        </div>
+                        
                     </div>
 
                     <Modal isOpen={isModalAttachmentOpen} onClose={closeModalAttachment}>

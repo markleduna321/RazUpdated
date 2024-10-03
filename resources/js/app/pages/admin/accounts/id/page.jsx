@@ -32,10 +32,19 @@ export default function AccountsViewPage() {
                         <h3 className="text-base font-semibold leading-7 text-gray-900">Account Information</h3>
                         <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details and application.</p>
                     </div>
-                    <div className="flex gap-4">
-                        <Button variant="primary" icon={<PencilSquareIcon className="h-5 w-5" />}>
+                    <div className="mt-4 sm:ml-16 sm:mt-0 flex gap-4">
+                    <div>
+                        <Button
+                            type="button"
+                            variant="primary"
+                            size="md"
+                            isLoading={false}
+                            disabled={false}
+                            icon={<PencilSquareIcon className="h-5 w-5" />}
+                        >
                             Edit
                         </Button>
+                        </div>
                     </div>
                 </div>
 

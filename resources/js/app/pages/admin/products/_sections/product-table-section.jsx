@@ -13,12 +13,16 @@ function handleProductAdded(params) {
   return (
     <div className="px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-md pt-3">
       <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-base font-semibold leading-6 text-gray-900">Products</h1>
-          <p className="mt-2 text-sm text-gray-700">
-            A list of all the products in your account including their name, expiry date, stock, and DR Date.
-          </p>
-        </div>
+      <div className="sm:flex-auto">
+        <h1 className="text-2xl font-semibold leading-6 text-gray-900 underline decoration-green-400 w-24 shadow-md">
+          Products
+        </h1>
+        <p className="mt-2 text-sm text-gray-700">
+          A list of all the products in your account including their name, expiry date, stock, and DR Date.
+        </p>
+    </div>
+
+
 
         {/* Pass the callback to refresh products when a new one is added */}
         <ProductCreateSection onProductAdded={handleProductAdded} />

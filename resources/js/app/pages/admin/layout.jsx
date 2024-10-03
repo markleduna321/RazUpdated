@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 import {
   Dialog,
   DialogBackdrop,
@@ -8,7 +8,7 @@ import {
   MenuItem,
   MenuItems,
   TransitionChild,
-} from '@headlessui/react'
+} from '@headlessui/react';
 import {
   Bars3Icon,
   BellIcon,
@@ -20,45 +20,51 @@ import {
   HomeIcon,
   UsersIcon,
   XMarkIcon,
-} from '@heroicons/react/24/outline'
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { Link } from '@inertiajs/react'
+} from '@heroicons/react/24/outline';
+import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/20/solid';
+import { Link } from '@inertiajs/react';
 
 const navigation = [
-  { name: 'Dashboard', href: '/admin/dashboard', icon: HomeIcon, current: true },
-  { name: 'Order Inventory', href: '#', icon: UsersIcon, current: false },
-  { name: 'Products', href: '/admin/products', icon: FolderIcon, current: false },
-  { name: 'Accounts', href: '/admin/accounts', icon: CalendarIcon, current: false },
-  { name: 'Purchase Order', href: '/admin/purchase', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
-]
+  { name: 'Dashboard', href: '/admin/dashboard', icon: HomeIcon },
+  { name: 'Order Inventory', href: '#', icon: UsersIcon },
+  { name: 'Products', href: '/admin/products', icon: FolderIcon },
+  { name: 'Accounts', href: '/admin/accounts', icon: CalendarIcon },
+  { name: 'Purchase Order', href: '/admin/purchase', icon: DocumentDuplicateIcon },
+  { name: 'Reports', href: '#', icon: ChartPieIcon },
+];
+
 const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
-]
+  { id: 1, name: 'Heroicons', href: '#', initial: 'H' },
+  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T' },
+  { id: 3, name: 'Workcation', href: '#', initial: 'W' },
+];
+
 const userNavigation = [
   { name: 'Your profile', href: '#' },
   { name: 'Sign out', href: '#' },
-]
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ');
 }
 
 export default function AdminLayout({ children }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [navItems, setNavItems] = useState(navigation);
+
+  useEffect(() => {
+    const currentPath = window.location.pathname;
+
+    const updatedNavItems = navItems.map((item) => ({
+      ...item,
+      current: item.href === currentPath,
+    }));
+
+    setNavItems(updatedNavItems);
+  }, []);
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        
-        <html class="h-full bg-white">
-        <body class="h-full">
-        
-      */}
       <div>
         <Dialog open={sidebarOpen} onClose={setSidebarOpen} className="relative z-50 lg:hidden">
           <DialogBackdrop
@@ -79,7 +85,6 @@ export default function AdminLayout({ children }) {
                   </button>
                 </div>
               </TransitionChild>
-              {/* Sidebar component, swap this element with another sidebar if you like */}
               <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4 ring-1 ring-white/10">
                 <div className="flex h-16 shrink-0 items-center">
                   <img
@@ -92,7 +97,7 @@ export default function AdminLayout({ children }) {
                   <ul role="list" className="flex flex-1 flex-col gap-y-7">
                     <li>
                       <ul role="list" className="-mx-2 space-y-1">
-                        {navigation.map((item) => (
+                        {navItems.map((item) => (
                           <li key={item.name}>
                             <a
                               href={item.href}
@@ -118,9 +123,7 @@ export default function AdminLayout({ children }) {
                             <a
                               href={team.href}
                               className={classNames(
-                                team.current
-                                  ? 'bg-gray-800 text-white'
-                                  : 'text-gray-400 hover:bg-gray-800 hover:text-white',
+                                'text-gray-400 hover:bg-gray-800 hover:text-white',
                                 'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
                               )}
                             >
@@ -151,7 +154,6 @@ export default function AdminLayout({ children }) {
 
         {/* Static sidebar for desktop */}
         <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
             <div className="flex h-16 shrink-0 items-center">
               <img
@@ -164,7 +166,7 @@ export default function AdminLayout({ children }) {
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
                 <li>
                   <ul role="list" className="-mx-2 space-y-1">
-                    {navigation.map((item) => (
+                    {navItems.map((item) => (
                       <li key={item.name}>
                         <Link
                           href={item.href}
@@ -190,9 +192,7 @@ export default function AdminLayout({ children }) {
                         <a
                           href={team.href}
                           className={classNames(
-                            team.current
-                              ? 'bg-gray-800 text-white'
-                              : 'text-gray-400 hover:bg-gray-800 hover:text-white',
+                            'text-gray-400 hover:bg-gray-800 hover:text-white',
                             'group flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6',
                           )}
                         >
@@ -297,5 +297,5 @@ export default function AdminLayout({ children }) {
         </div>
       </div>
     </>
-  )
+  );
 }

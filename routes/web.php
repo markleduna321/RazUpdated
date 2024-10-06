@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PurchaseOrderController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -66,7 +67,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/', function () {
             return Inertia::render('admin/purchase-order/page');
         });
-        
     });
 });
 

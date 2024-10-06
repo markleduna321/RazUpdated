@@ -21,7 +21,6 @@ export default function PurchaseOrderCreateSection() {
     const closeModal = () => setModalOpen(false);
 
     useEffect(() => {
-        // dispatch(get_products_for_purchase_order_thunk());
         dispatch(get_products_thunk()); // Fetch products when component mounts
     }, [dispatch]);
 
@@ -66,17 +65,20 @@ export default function PurchaseOrderCreateSection() {
                 )}
 
                 {orderItems.map((item, index) => (
-                    <div key={index} className="flex gap-4">
-                        <InputSelectComponent
-                            id={`product-${index}`}
-                            name="product"
-                            products={products} // Ensure products is an array
-                            value={item.product}
-                            onChange={handleInputChange}
-                            index={index}
-                        />
+                    <div key={index} className="flex items-center gap-4 mb-2 ">
+                        <div className="w-60 pt-1">
+                            <InputSelectComponent
+                                id={`product-${index}`}
+                                name="product"
+                                products={products} // Ensure products is an array
+                                value={item.product}
+                                onChange={handleInputChange}
+                                index={index}
+                                className="flex-grow" // Allow the product dropdown to take remaining space
+                            />
+                        </div>
 
-                        <div>
+                        <div className="w-20"> {/* Set a fixed width for price input */}
                             <InputLabelComponent htmlFor={`price-${index}`} labelText="Price" />
                             <InputTextComponent
                                 id={`price-${index}`}
@@ -86,14 +88,17 @@ export default function PurchaseOrderCreateSection() {
                                 onChange={(e) => handleInputChange(index, 'price', e.target.value)}
                                 required
                                 autoComplete="price"
+                                className="w-full" // Ensure price input takes full width of the container
                             />
                         </div>
-
-                        {orderItems.length > 1 && (
-                            <Button variant="danger" onClick={() => removeProductPrice(index)}>
-                                <XMarkIcon className="h-5 w-5" />
-                            </Button>
-                        )}
+                        <div className="pt-6">
+                            {orderItems.length > 1 && (
+                                <Button variant="danger" onClick={() => removeProductPrice(index)}>
+                                    <XMarkIcon className="h-5 w-5" />
+                                </Button>
+                            )}
+                        </div>
+                        
                     </div>
                 ))}
 

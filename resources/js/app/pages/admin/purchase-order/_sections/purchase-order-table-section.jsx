@@ -3,15 +3,18 @@ import PurchaseOrderCreateSection from './purchase-order-create-section';
 import store from '@/app/store/store';
 import { get_products_thunk } from '../../products/_redux/products-thunk';
 import { useSelector } from 'react-redux';
+import { get_accounts_thunk } from '../../accounts/_redux/accounts-thunk';
 
 
 
 export default function PurchaseOrderTableSection() {
   // Get the products from the Redux store
   const products = useSelector((state) => state.products.products);
+  const accounts = useSelector((state) => state.accounts.accounts);
 
   useEffect(() => {
     store.dispatch(get_products_thunk()); // Call the thunk to fetch products
+    store.dispatch(get_accounts_thunk());
   }, []);
 
   return (

@@ -1,26 +1,34 @@
-import { createSlice } from '@reduxjs/toolkit'
-
-const path = window.location.hash.substring(1); // Get the hash without the first character
-const hash = path.split('&')[0];
+import { createSlice } from '@reduxjs/toolkit';
 
 export const purchase_ordersSlice = createSlice({
   name: 'purchase_orders',
   initialState: {
     purchase_orders: [],
-    purchase_order:{}
+    purchase_order: {},
+    loading: false,
+    error: null,
   },
   reducers: {
     setPurchase_orders: (state, action) => {
-      state.purchase_orders = action.payload
+      state.purchase_orders = action.payload;
     },
     setPurchase_order: (state, action) => {
-        state.purchase_order = action.payload
-      },
+      state.purchase_order = action.payload;
+    },
+    setLoading: (state, action) => {
+      state.loading = action.payload; // true or false
+    },
+    setError: (state, action) => {
+      state.error = action.payload; // Error message
+    },
   },
-})
+});
+
 export const { 
     setPurchase_orders,
-    setPurchase_order
- } = purchase_ordersSlice.actions
+    setPurchase_order,
+    setLoading,
+    setError
+} = purchase_ordersSlice.actions;
 
-export default purchase_ordersSlice.reducer
+export default purchase_ordersSlice.reducer;

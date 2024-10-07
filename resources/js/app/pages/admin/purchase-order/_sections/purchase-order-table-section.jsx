@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import PurchaseOrderCreateSection from './purchase-order-create-section';
 import store from '@/app/store/store';
 import { get_products_thunk } from '../../products/_redux/products-thunk';
-import { useSelector } from 'react-redux';
 import { get_accounts_thunk } from '../../accounts/_redux/accounts-thunk';
-
-
+import { fetch_purchase_orders_thunk } from '../_redux/purchase-order-thunk';
 
 export default function PurchaseOrderTableSection() {
-  // Get the products from the Redux store
+  // Get the products and purchase orders from the Redux store
   const products = useSelector((state) => state.products.products);
+  const purchaseOrders = useSelector((state) => state.purchase_orders.purchase_orders); // Corrected selector
   const accounts = useSelector((state) => state.accounts.accounts);
 
   useEffect(() => {
-    store.dispatch(get_products_thunk()); // Call the thunk to fetch products
-    store.dispatch(get_accounts_thunk());
+    store.dispatch(get_products_thunk()); // Fetch products
+    store.dispatch(get_accounts_thunk()); // Fetch accounts
+    store.dispatch(fetch_purchase_orders_thunk()); // Fetch purchase orders
   }, []);
 
   return (
@@ -59,9 +60,17 @@ export default function PurchaseOrderTableSection() {
               </thead>
 
               <tbody className="divide-y divide-gray-200">
-               
-                    
-                
+                {purchaseOrders.map((order, index) => (
+                  <tr key={order.id}>
+                    <td className="py-4 pl-4 pr-3 text-sm text-gray-900 sm:pl-0">{order.id}</td>
+                    <td className="px-3 py-4 text-sm text-gray-900">{order.account.name}</td>
+                    <td className="px-3 py-4 text-sm text-gray-900">{order.medRep}</td>
+                    <td className="px-3 py-4 text-sm text-gray-900">{order.status}</td>
+                    <td className="px-3 py-4 text-sm text-gray-900">
+                      {/* Action buttons (edit, delete, etc.) can go here */}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

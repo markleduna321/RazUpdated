@@ -10,3 +10,8 @@ export async function create_purchase_orders_service(data) {
         throw error; // Rethrow the error to handle it in the component or thunk
     }
 }
+
+export const fetch_purchase_orders_service = async () => {
+    const response = await axios.get('/api/purchase-orders'); // Update the URL as per your API
+    return response.data; // Return the data from the response
+};

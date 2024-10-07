@@ -21,14 +21,25 @@ export const purchase_ordersSlice = createSlice({
     setError: (state, action) => {
       state.error = action.payload; // Error message
     },
+    resetError: (state) => {
+      state.error = null; // Reset the error to null
+    },
   },
 });
 
+// Export actions
 export const { 
     setPurchase_orders,
     setPurchase_order,
     setLoading,
-    setError
+    setError,
+    resetError // Export the reset error action
 } = purchase_ordersSlice.actions;
+
+// Selectors
+export const selectPurchaseOrders = (state) => state.purchase_orders.purchase_orders;
+export const selectPurchaseOrder = (state) => state.purchase_orders.purchase_order;
+export const selectLoading = (state) => state.purchase_orders.loading;
+export const selectError = (state) => state.purchase_orders.error;
 
 export default purchase_ordersSlice.reducer;

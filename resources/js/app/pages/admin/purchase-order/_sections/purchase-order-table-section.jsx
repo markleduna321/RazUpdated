@@ -67,7 +67,7 @@ export default function PurchaseOrderTableSection() {
                     <td className="px-3 py-4 text-sm text-gray-900">{order.medRep}</td>
                     <td className="px-3 py-4 text-sm text-gray-900">{order.status}</td>
                     <td className="px-3 py-4 text-sm text-gray-900">
-                      {/* Action buttons (edit, delete, etc.) can go here */}
+                      <a href={`/admin/purchase/${order.id}`} className="text-indigo-600 hover:text-indigo-900">View</a>
                     </td>
                   </tr>
                 ))}

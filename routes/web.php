@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Product;
 use App\Models\Account;
+use App\Models\PurchaseOrder;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,18 @@ Route::prefix('admin')->group(function () {
     Route::prefix('purchase')->group(function () {
         Route::get('/', function () {
             return Inertia::render('admin/purchase-order/page');
+        });
+        
+        Route::get('/{id}', function ($id) {
+            $purchaseOrder = PurchaseOrder::find($id);
+    
+            if (!$purchaseOrder) {
+                return redirect()->route('purchase-order.index')->withErrors('Account not found');
+            }
+    
+            return Inertia::render('admin/purchase-order/id/page', [
+                'purchaseOrder' => $purchaseOrder
+            ]);
         });
     });
 });

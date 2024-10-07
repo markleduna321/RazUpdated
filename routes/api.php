@@ -25,6 +25,7 @@ use App\Http\Controllers\PurchaseOrderController;
 
     Route::resource('products', ProductController::class);
     Route::resource('accounts', AccountController::class);
+    Route::resource('purchase-orders', PurchaseOrderController::class);
     // Route::get('/products', [ProductController::class, 'index']);
     // Route::post('/products', [ProductController::class, 'store']);
     // Route::get('/products/{id}', [ProductController::class, 'show']);

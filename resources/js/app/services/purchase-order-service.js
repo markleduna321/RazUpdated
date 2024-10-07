@@ -1,11 +1,12 @@
 import axios from 'axios';
 
-export async function get_products_for_purchase_order_service() {
+export async function create_purchase_orders_service(data) {
     try {
-        const response = await axios.get('api/purchase-orders/products');
-        return res.data; // Assuming the API returns products directly in res.data
+        const res = await axios.post('/api/purchase-orders', data); // Use the correct API endpoint for purchase orders
+        return res.data; // Return the full response, you may adjust this based on your API's response structure
     } catch (error) {
-        console.error('Error fetching purchase orders:', error);
-        throw error; // Optionally rethrow the error to handle it in the calling function
+        // Handle errors as needed
+        console.error('Error creating purchase order:', error);
+        throw error; // Rethrow the error to handle it in the component or thunk
     }
 }

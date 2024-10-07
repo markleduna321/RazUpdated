@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('account_id')->constrained('accounts')->onDelete('cascade'); // Foreign key to the accounts table
+            $table->string('medRep'); // Store medRep info
+            $table->string('status')->default('Pending'); // Status of the order
             $table->timestamps();
         });
     }

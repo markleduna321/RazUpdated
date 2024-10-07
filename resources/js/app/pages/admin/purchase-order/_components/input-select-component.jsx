@@ -12,15 +12,15 @@ export default function InputSelectComponent({ id, name, products, value, onChan
             <select
                 id={id}
                 name={name}
-                value={value}
-                onChange={(e) => onChange(index, 'product', e.target.value)}
+                value={value} // Should be the product ID
+                onChange={(e) => onChange(e.target.value)} // Pass the selected product ID
                 required
                 className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             >
                 <option value="">Select a product</option>
                 {productOptions.length > 0 ? (
                     productOptions.map((product) => (
-                        <option key={product.id} value={product.name}>
+                        <option key={product.id} value={product.id}> {/* Use product.id as the value */}
                             {product.name}
                         </option>
                     ))

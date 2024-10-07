@@ -3,84 +3,97 @@
 namespace App\Http\Controllers;
 
 use App\Models\PurchaseOrder;
-use App\Http\Requests\StorePurchaseOrderRequest;
-use App\Http\Requests\UpdatePurchaseOrderRequest;
-use App\Models\Product;
+use App\Models\OrderItem;
+use Illuminate\Http\Request;
 
 class PurchaseOrderController extends Controller
 {
-    /**
-     * Fetch all products for a purchase order.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getProducts()
+    // Method to store a new purchase order
+    public function store(Request $request)
     {
-        try {
-            // Fetch products from the database
-            $products = Product::all();
+        $request->validate([
+            'account_id' => 'required|exists:accounts,id',
+            'medRep' => 'required',
+            'orderItems' => 'required|array',
+            'orderItems.*.product_id' => 'required|exists:products,id',
+            'orderItems.*.price' => 'required|numeric',
+        ]);
 
-            // Return products as JSON response
-            return response()->json($products, 200);
-        } catch (\Exception $e) {
-            // Handle errors
-            return response()->json(['error' => 'Failed to fetch products'], 500);
+        $purchaseOrder = PurchaseOrder::create([
+            'account_id' => $request->input('account_id'),
+            'medRep' => $request->input('medRep'),
+            'status' => $request->input('status', 'Pending')
+        ]);
+
+        foreach ($request->input('orderItems') as $item) {
+            OrderItem::create([
+                'purchase_order_id' => $purchaseOrder->id,
+                'product_id' => $item['product_id'],
+                'price' => $item['price']
+            ]);
         }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Purchase order created successfully',
+            'data' => $purchaseOrder->load('orderItems')
+        ]);
     }
 
-    /**
-     * Display a listing of the resource.
-     */
+    // Method to list all purchase orders
     public function index()
     {
-        //
+        $purchaseOrders = PurchaseOrder::with('orderItems', 'account')->get();
+        return response()->json($purchaseOrders);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    // Method to retrieve a single purchase order by ID
+    public function show($id)
     {
-        //
+        $purchaseOrder = PurchaseOrder::with('orderItems', 'account')->findOrFail($id);
+        return response()->json($purchaseOrder);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePurchaseOrderRequest $request)
+    // Method to update an existing purchase order
+    public function update(Request $request, $id)
     {
-        //
+        $purchaseOrder = PurchaseOrder::findOrFail($id);
+
+        // Update the PurchaseOrder fields
+        $purchaseOrder->update([
+            'account_id' => $request->input('account_id', $purchaseOrder->account_id),
+            'medRep' => $request->input('medRep', $purchaseOrder->medRep),
+            'status' => $request->input('status', $purchaseOrder->status)
+        ]);
+
+        // Clear existing order items and re-add the new ones
+        $purchaseOrder->orderItems()->delete();
+
+        foreach ($request->input('orderItems') as $item) {
+            OrderItem::create([
+                'purchase_order_id' => $purchaseOrder->id,
+                'product_id' => $item['product_id'],
+                'price' => $item['price']
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Purchase order updated successfully',
+            'data' => $purchaseOrder->load('orderItems')
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(PurchaseOrder $purchaseOrder)
+    // Method to delete a purchase order
+    public function destroy($id)
     {
-        //
-    }
+        $purchaseOrder = PurchaseOrder::findOrFail($id);
+        $purchaseOrder->orderItems()->delete(); // Delete the related order items first
+        $purchaseOrder->delete();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(PurchaseOrder $purchaseOrder)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatePurchaseOrderRequest $request, PurchaseOrder $purchaseOrder)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(PurchaseOrder $purchaseOrder)
-    {
-        //
+        return response()->json([
+            'success' => true,
+            'message' => 'Purchase order deleted successfully'
+        ]);
     }
 }

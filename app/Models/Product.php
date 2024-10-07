@@ -15,4 +15,9 @@ class Product extends Model
         'expiry_date',
         'stock'
     ];
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

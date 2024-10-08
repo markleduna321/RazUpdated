@@ -67,8 +67,19 @@ export default function PurchaseOrderIDDetailsSection() {
                     </div>
                     <div className=" px-4 py-6 sm:col-span-2 sm:px-0">
                         <hr className="mb-4" />
-                        <dt className="text-xl font-medium leading-6 text-black ">Products</dt>
+                        <dt className="text-xl font-medium leading-6 text-black ">Purchase Request</dt>
                         <dd className="mt-1 text-sm leading-6 text-black sm:mt-2">
+                            <div className="flex justify-between gap-20 w-1/4 text-lg text-lime-900">
+                                <div >
+                                    Product Name
+                                </div>
+                                <div >
+                                    Amount
+                                </div>
+                                <div >
+                                    Price
+                                </div>
+                            </div>
                             <ul>
                                 {purchaseOrder.order_items && purchaseOrder.order_items.length > 0 ? (
                                     purchaseOrder.order_items.map((item) => (
@@ -76,7 +87,10 @@ export default function PurchaseOrderIDDetailsSection() {
                                             <div >
                                                 <span>{item.product ? item.product.name : 'N/A'}</span>
                                             </div>
-                                            <div>
+                                            <div >
+                                                <span>{item.amount ? item.amount : 'N/A'}</span>
+                                            </div>
+                                            <div >
                                                 <span>{item.price ? `₱${parseFloat(item.price).toFixed(2)}` : 'N/A'}</span>
                                             </div>
                                             {console.log('product', item.product)}

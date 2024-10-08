@@ -26,11 +26,11 @@ import { Link } from '@inertiajs/react';
 
 const navigation = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: HomeIcon },
-  { name: 'Order Inventory', href: '#', icon: UsersIcon },
+  { name: 'Order Inventory', href: '/admin/order-inventory', icon: UsersIcon },
   { name: 'Products', href: '/admin/products', icon: FolderIcon },
   { name: 'Accounts', href: '/admin/accounts', icon: CalendarIcon },
   { name: 'Purchase Order', href: '/admin/purchase', icon: DocumentDuplicateIcon },
-  { name: 'Reports', href: '#', icon: ChartPieIcon },
+  { name: 'Reports', href: '/admin/reports', icon: ChartPieIcon },
 ];
 
 const teams = [

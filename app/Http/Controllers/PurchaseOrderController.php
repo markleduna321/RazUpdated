@@ -16,6 +16,7 @@ class PurchaseOrderController extends Controller
             'medRep' => 'required',
             'orderItems' => 'required|array',
             'orderItems.*.product_id' => 'required|exists:products,id',
+            'orderItems.*.amount' => 'required|numeric',
             'orderItems.*.price' => 'required|numeric',
         ]);
 
@@ -29,6 +30,7 @@ class PurchaseOrderController extends Controller
             OrderItem::create([
                 'purchase_order_id' => $purchaseOrder->id,
                 'product_id' => $item['product_id'],
+                'amount' => $item['amount'],
                 'price' => $item['price']
             ]);
         }

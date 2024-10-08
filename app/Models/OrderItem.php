@@ -9,7 +9,7 @@ class OrderItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['purchase_order_id', 'product_id', 'price'];
+    protected $fillable = ['purchase_order_id', 'product_id', 'amount', 'price'];
 
     /**
      * Define the relationship between an OrderItem and a PurchaseOrder.

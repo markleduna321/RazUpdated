@@ -12,9 +12,9 @@ import axios from 'axios';
 
 export default function PurchaseOrderCreateSection() {
     const [isModalOpen, setModalOpen] = useState(false);
-    const [orderItems, setOrderItems] = useState([{ product: '', price: '' }]);
+    const [orderItems, setOrderItems] = useState([{ product: '', amount: '', price: '' }]);
     const [selectedAccount, setSelectedAccount] = useState(''); // State for selected account
-    const [medRep, setMedRep] = useState('12345'); // Example medRep value
+    const [medRep, setMedRep] = useState('User01'); // Example medRep value
     const [status, setStatus] = useState('Pending');
     const [loading, setLoading] = useState(false); // Loading state
     const [error, setError] = useState(''); // Error state
@@ -46,7 +46,7 @@ export default function PurchaseOrderCreateSection() {
     };
 
     const addNewProductPrice = () => {
-        setOrderItems([...orderItems, { product: '', price: '' }]);
+        setOrderItems([...orderItems, { product: '', amount: '', price: '' }]);
     };
 
     const removeProductPrice = (index) => {
@@ -62,6 +62,7 @@ export default function PurchaseOrderCreateSection() {
             status,
             orderItems: orderItems.map(item => ({
                 product_id: item.product, // This should now be the product ID
+                amount: item.amount,
                 price: item.price
             })),
         };
@@ -70,7 +71,7 @@ export default function PurchaseOrderCreateSection() {
             const response = await axios.post('/api/purchase-orders', payload);
             console.log('Purchase order created successfully:', response.data);
             closeModal();
-            setOrderItems([{ product: '', price: '' }]);
+            setOrderItems([{ product: '', amount: '', price: '' }]);
             setSelectedAccount('');
         } catch (error) {
             console.error('Error creating purchase order:', error.response.data);
@@ -120,7 +121,21 @@ export default function PurchaseOrderCreateSection() {
             />
         </div>
 
-        <div className="w-20"> {/* Set a fixed width for price input */}
+        <div className="w-24"> {/* Set a fixed width for price input */}
+            <InputLabelComponent htmlFor={`amount-${index}`} labelText="Amount" />
+            <InputTextComponent
+                id={`amount-${index}`}
+                name="amount"
+                type="number"
+                value={item.amount}
+                onChange={(e) => handleInputChange(index, 'amount', e.target.value)}
+                required
+                autoComplete="amount"
+                className="w-full" // Ensure price input takes full width of the container
+            />
+        </div>
+
+        <div className="w-24"> {/* Set a fixed width for price input */}
             <InputLabelComponent htmlFor={`price-${index}`} labelText="Price" />
             <InputTextComponent
                 id={`price-${index}`}
@@ -133,6 +148,7 @@ export default function PurchaseOrderCreateSection() {
                 className="w-full" // Ensure price input takes full width of the container
             />
         </div>
+
         <div className="pt-6">
             {orderItems.length > 1 && (
                 <Button variant="danger" onClick={() => removeProductPrice(index)}>

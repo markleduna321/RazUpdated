@@ -9,7 +9,7 @@ export default function AdminDashboard() {
         
         <AdminDashboardCardSection/>
 
-        <div class=" mt-14 rounded-lg bg-white px-4 pb-12 pt-5 shadow-lg sm:px-6 sm:pt-6">
+        <div className=" mt-14 rounded-lg bg-white px-4 pb-12 pt-5 shadow-lg sm:px-6 sm:pt-6">
             <AdminUpdatesSection/>
         </div>
         

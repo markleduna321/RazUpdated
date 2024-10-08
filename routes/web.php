@@ -81,6 +81,22 @@ Route::prefix('admin')->group(function () {
             ]);
         });
     });
+
+    Route::prefix('order-inventory')->group(function () {
+        Route::get('/', function () {
+            return Inertia::render('admin/order-inventory/page');
+        });
+        
+        
+    });
+
+    Route::prefix('reports')->group(function () {
+        Route::get('/', function () {
+            return Inertia::render('admin/reports/page');
+        });
+        
+        
+    });
 });
 
 

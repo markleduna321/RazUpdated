@@ -50,7 +50,7 @@ class PurchaseOrderController extends Controller
     // Method to retrieve a single purchase order by ID
     public function show($id)
     {
-        $purchaseOrder = PurchaseOrder::with('orderItems', 'account')->findOrFail($id);
+        $purchaseOrder = PurchaseOrder::with('orderItems', 'orderItems.product', 'account')->findOrFail($id);
         return response()->json($purchaseOrder);
     }
 

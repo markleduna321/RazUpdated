@@ -30,48 +30,67 @@ export default function PurchaseOrderIDDetailsSection() {
         : 0;
 
     return (
-        <div>
-            <div className="px-4 sm:px-0">
-                <h3 className="text-base font-semibold leading-7 text-gray-900">Purchase Order Information</h3>
-                <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Details of the purchase order.</p>
-            </div>
-            <div className="mt-6">
+        
+            <div className="mt-6 border-t border-gray-100">
+                <hr />
                 <dl className="grid grid-cols-1 sm:grid-cols-2">
-                    <div className="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
-                        <dt className="text-sm font-medium leading-6 text-gray-900">Account Name</dt>
+                    <div className="px-4 py-6 sm:col-span-1 sm:px-0">
+                        <dt className="text-md font-medium leading-6 text-black">Account Name</dt>
                         <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">{purchaseOrder.account?.name || 'N/A'}</dd>
                     </div>
-                    <div className="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
-                        <dt className="text-sm font-medium leading-6 text-gray-900">Medical Rep</dt>
+                    <div className="px-4 py-6 sm:col-span-1 sm:px-0">
+                        <dt className="text-md font-medium leading-6 text-black">Medical Rep</dt>
                         <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">{purchaseOrder.medRep || 'N/A'}</dd>
                     </div>
-                    <div className="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
-                        <dt className="text-sm font-medium leading-6 text-gray-900">Status</dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">{purchaseOrder.status || 'N/A'}</dd>
-                    </div>
-                    <div className="border-t border-gray-100 px-4 py-6 sm:col-span-1 sm:px-0">
-                        <dt className="text-sm font-medium leading-6 text-gray-900">Total Price</dt>
-                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">{totalPrice > 0 ? `$${totalPrice.toFixed(2)}` : 'N/A'}</dd>
-                    </div>
-                    <div className="border-t border-gray-100 px-4 py-6 sm:col-span-2 sm:px-0">
-                        <dt className="text-sm font-medium leading-6 text-gray-900">Products</dt>
+                    <div className="px-4 py-6 sm:col-span-1 sm:px-0">
+                        <dt className="text-md font-medium leading-6 text-black">Status</dt>
                         <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
+                            <span
+                                className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${
+                                    purchaseOrder.status === 'Pending'
+                                        ? 'bg-yellow-100 text-yellow-800'
+                                        : purchaseOrder.status === 'Completed'
+                                        ? 'bg-green-100 text-green-800'
+                                        : purchaseOrder.status === 'Cancelled'
+                                        ? 'bg-red-100 text-red-800'
+                                        : 'bg-gray-100 text-gray-800'
+                                }`}
+                            >
+                                {purchaseOrder.status || 'N/A'}
+                            </span>
+                        </dd>
+                    </div>
+
+                    <div className="px-4 py-6 sm:col-span-1 sm:px-0">
+                        <dt className="text-md font-medium leading-6 text-black">Total Price</dt>
+                        <dd className="mt-1 text-sm leading-6 text-gray-700 sm:mt-2">{totalPrice > 0 ? `₱${totalPrice.toFixed(2)}` : 'N/A'}</dd>
+                    </div>
+                    <div className=" px-4 py-6 sm:col-span-2 sm:px-0">
+                        <hr className="mb-4" />
+                        <dt className="text-xl font-medium leading-6 text-black ">Products</dt>
+                        <dd className="mt-1 text-sm leading-6 text-black sm:mt-2">
                             <ul>
-                            {purchaseOrder.order_items && purchaseOrder.order_items.length > 0 ? (
-                                purchaseOrder.order_items.map((item) => (
-                                    <li key={item.id} className="flex justify-between">
-                                        <span>{item.product ? item.product.name : 'N/A'}</span>
-                                        <span>{item.price ? `$${parseFloat(item.price).toFixed(2)}` : 'N/A'}</span>
-                                    </li>
-                                ))
-                            ) : (
-                                <li>No products found.</li>
-                            )}
+                                {purchaseOrder.order_items && purchaseOrder.order_items.length > 0 ? (
+                                    purchaseOrder.order_items.map((item) => (
+                                        <li key={item.id} className="flex justify-between gap-20 w-1/4">
+                                            <div >
+                                                <span>{item.product ? item.product.name : 'N/A'}</span>
+                                            </div>
+                                            <div>
+                                                <span>{item.price ? `₱${parseFloat(item.price).toFixed(2)}` : 'N/A'}</span>
+                                            </div>
+                                            {console.log('product', item.product)}
+                                        </li>
+                                    ))
+                                ) : (
+                                    <li>No products found.</li>
+                                )}
+
                             </ul>
                         </dd>
                     </div>
                 </dl>
             </div>
-        </div>
+        
     );
 }

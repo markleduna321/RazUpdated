@@ -17,7 +17,14 @@ export default function PurchaseOrderDetailsPage() {
 
     return (
         <AdminLayout>
-            <PurchaseOrderIDDetailsSection />
+            <div className="relative bg-white p-5 rounded-lg shadow-md">
+                <div className="px-4 sm:px-0">
+                    <h3 className="text-2xl font-semibold leading-7 text-gray-900">Purchase Order Details</h3>
+                    <p className="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Details of the purchase order.</p>
+                </div>
+                <PurchaseOrderIDDetailsSection />
+            </div>
+            
         </AdminLayout>
     );
 }

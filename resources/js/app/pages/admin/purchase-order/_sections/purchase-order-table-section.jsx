@@ -60,18 +60,33 @@ export default function PurchaseOrderTableSection() {
               </thead>
 
               <tbody className="divide-y divide-gray-200">
-                {purchaseOrders.map((order, index) => (
+                {purchaseOrders.map((order) => (
                   <tr key={order.id}>
                     <td className="py-4 pl-4 pr-3 text-sm text-gray-900 sm:pl-0">{order.id}</td>
                     <td className="px-3 py-4 text-sm text-gray-900">{order.account.name}</td>
                     <td className="px-3 py-4 text-sm text-gray-900">{order.medRep}</td>
-                    <td className="px-3 py-4 text-sm text-gray-900">{order.status}</td>
+                    <td className="px-3 py-4 text-sm text-gray-900">
+                      <span
+                        className={`inline-block px-3 py-1 text-sm font-semibold rounded-full ${
+                          order.status === 'Pending'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : order.status === 'Completed'
+                            ? 'bg-green-100 text-green-800'
+                            : order.status === 'Cancelled'
+                            ? 'bg-red-100 text-red-800'
+                            : 'bg-gray-100 text-gray-800'
+                        }`}
+                      >
+                        {order.status}
+                      </span>
+                    </td>
                     <td className="px-3 py-4 text-sm text-gray-900">
                       <a href={`/admin/purchase/${order.id}`} className="text-indigo-600 hover:text-indigo-900">View</a>
                     </td>
                   </tr>
                 ))}
               </tbody>
+
             </table>
           </div>
         </div>

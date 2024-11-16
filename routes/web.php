@@ -20,10 +20,11 @@ use App\Models\PurchaseOrder;
 |
 */
 
-Route::get('/', function () {
+Route::middleware('redirectBasedOnRole')->get('/', function () {
     return Inertia::render('login/page');
-});
-Route::prefix('admin')->group(function () {
+})->name('login');
+
+Route::middleware('auth:sanctum', 'role:1')->prefix('admin')->group(function () {
     Route::get('dashboard', function () {
         return Inertia::render('admin/dashboard/page');
     });
@@ -99,7 +100,9 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-
+Route::middleware('auth:sanctum', 'role:2')->get('/med_rep/dashboard', function () {
+    return Inertia::render('med_rep/dashboard/page');
+});
 
 
 // Route::get('/', function () {

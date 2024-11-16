@@ -1,11 +1,12 @@
 import React from 'react';
 
-const InputTextComponent = ({ id, name, type = "text", required = false, autoComplete,onChange }) => {
+const InputTextComponent = ({ id, name, type = "text", required = false, autoComplete,onChange,value }) => {
   return (
     <div className="mt-1">
       <div className="relative rounded-md shadow-sm">
         <input
           id={id}
+          value={value}
           name={name}
           type={type}
           required={required}

@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { get_products_thunk } from '../../products/_redux/products-thunk';
 import InputTextComponent from '@/app/pages/components/input-text-component';
 import axios from 'axios';
+import store from '@/app/store/store';
+import { create_purchase_order_thunk, fetch_purchase_orders_thunk } from '../_redux/purchase-order-thunk';
 
 export default function PurchaseOrderCreateSection() {
     const [isModalOpen, setModalOpen] = useState(false);
@@ -68,8 +70,8 @@ export default function PurchaseOrderCreateSection() {
         };
     
         try {
-            const response = await axios.post('/api/purchase-orders', payload);
-            console.log('Purchase order created successfully:', response.data);
+            await store.dispatch(create_purchase_order_thunk(payload))
+            await store.dispatch(fetch_purchase_orders_thunk());
             closeModal();
             setOrderItems([{ product: '', amount: '', price: '' }]);
             setSelectedAccount('');

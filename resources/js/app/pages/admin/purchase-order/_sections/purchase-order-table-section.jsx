@@ -12,11 +12,6 @@ export default function PurchaseOrderTableSection() {
   const purchaseOrders = useSelector((state) => state.purchase_orders.purchase_orders); // Corrected selector
   const accounts = useSelector((state) => state.accounts.accounts);
 
-  useEffect(() => {
-    store.dispatch(get_products_thunk()); // Fetch products
-    store.dispatch(get_accounts_thunk()); // Fetch accounts
-    store.dispatch(fetch_purchase_orders_thunk()); // Fetch purchase orders
-  }, []);
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 bg-white rounded-lg shadow-md pt-3">
